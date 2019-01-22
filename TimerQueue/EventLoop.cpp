@@ -3,13 +3,13 @@
 #include <signal.h>
 #include <sys/eventfd.h>
 #include <unistd.h>
-#include "EventLoop.hh"
-#include "Poller.hh"
-#include "Logger.hh"
+#include "EventLoop.hpp"
+#include "Poller.hpp"
+#include "Logger.hpp"
 
 __thread EventLoop* t_loopInThisThread = 0;
 
-const int kPollTimeMs = 10000;
+const int kPollTimeMs = -1;
 
 int createEventfd()
 {

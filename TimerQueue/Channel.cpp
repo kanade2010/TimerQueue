@@ -2,9 +2,9 @@
 #include <assert.h>
 #include <sstream>
 
-#include "Channel.hh"
-#include "EventLoop.hh"
-#include "Logger.hh"
+#include "Channel.hpp"
+#include "EventLoop.hpp"
+#include "Logger.hpp"
 
 const int Channel::kNoneEvent = 0;
 const int Channel::kReadEvent = POLLIN | POLLPRI;

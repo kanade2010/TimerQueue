@@ -1,8 +1,6 @@
 #ifndef _NET_TIMERQUEUE_HH
 #define _NET_TIMERQUEUE_HH
-#include "TimeStamp.hh"
-#include "Channel.hh"
-#include "EventLoop.hh"
+#include "TimeStamp.hpp"
 
 #include <stdint.h>
 #include <set>
@@ -125,6 +123,9 @@ class TimerId
   int64_t m_sequence;
 };
 
+class Channel;
+class EventLoop;
+
 class TimerQueue
 {
 private:
@@ -132,7 +133,7 @@ private:
 public:
   ~TimerQueue();
 
-  static TimerQueue* GetInstance()        // 对GetInstance稍加修改，这个设计模板便可以适用于可变多实例情况，如一个类允许最多五个实例。
+  static TimerQueue* GetInstance()
   {
     static TimerQueue instance;
     return &instance;
@@ -165,10 +166,8 @@ private:
   bool insert(Timer* timer);
   void reset(const std::vector<Entry>& expired, TimeStamp now);
 
-  //std::unique_ptr<EventLoop> p_loop;
   std::thread m_thread;
   const int m_timerfd;
-  //std::unique_ptr<Channel> p_timerfdChannel;
   EventLoop* p_loop;
   Channel* p_timerfdChannel;
 

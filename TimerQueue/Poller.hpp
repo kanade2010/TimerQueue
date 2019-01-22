@@ -4,9 +4,9 @@
 #include <vector>
 #include <map>
 
-#include "TimeStamp.hh"
-#include "EventLoop.hh"
-#include "Channel.hh"
+#include "TimeStamp.hpp"
+#include "EventLoop.hpp"
+#include "Channel.hpp"
 
 /*
  *#include <sys/poll.h>

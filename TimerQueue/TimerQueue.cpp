@@ -4,9 +4,10 @@
 #include <unistd.h>
 #include <mutex>
 
-#include <iostream>
-#include "Logger.hh"
-#include "TimerQueue.hh"
+#include "Logger.hpp"
+#include "Channel.hpp"
+#include "EventLoop.hpp"
+#include "TimerQueue.hpp"
 
 namespace TimerFd
 {

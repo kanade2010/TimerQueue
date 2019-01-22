@@ -1,5 +1,5 @@
-#include "Poller.hh"
-#include "Logger.hh"
+#include "Poller.hpp"
+#include "Logger.hpp"
 #include <assert.h>
 #include <poll.h>
 #include <signal.h>
@@ -18,7 +18,7 @@ Poller::~Poller()
 TimeStamp Poller::poll(int timeoutMs, ChannelList* activeChannels)
 {
   LOG_TRACE << "Poller::poll()";
-  int numEvents = ::poll(/*&*m_pollfds.begin()*/m_pollfds.data(), m_pollfds.size(), -1);
+  int numEvents = ::poll(/*&*m_pollfds.begin()*/m_pollfds.data(), m_pollfds.size(), timeoutMs);
   TimeStamp now(TimeStamp::now());
   if(numEvents > 0){
     LOG_TRACE << numEvents << " events happended";
