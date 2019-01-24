@@ -109,7 +109,7 @@ void Poller::removeChannel(Channel* channel)
   assert(pfd.fd == - 1 && pfd.events == channel->events());
   size_t n = m_channels.erase(channel->fd());
   assert(n == 1); (void)n;
-  if(m_pollfds.size() - 1 == idx)
+  if(static_cast<int>(m_pollfds.size() - 1) == idx)
   {
     m_pollfds.pop_back();
   }

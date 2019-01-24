@@ -1,18 +1,7 @@
-#include <errno.h>
-#include <thread>
-#include <strings.h>
-#include <poll.h>
 #include <chrono>
-#include <functional>
 #include <iostream>
-#include "EventLoop.hpp"
-#include "Channel.hpp"
-#include "Poller.hpp"
 #include "Logger.hpp"
-#include "TimeStamp.hpp"
 #include "TimerQueue.hpp"
-
-void print() { LOG_DEBUG << "test print()";  }
 
 void test()
 {
@@ -27,7 +16,7 @@ void test()
 int main()
 {
 
-  //Logger::setLogLevel(Logger::TRACE);
+  Logger::setLogLevel(Logger::TRACE);
 
   TimerQueue* timer_queue = TimerQueue::GetInstance();
   timer_queue->Start();

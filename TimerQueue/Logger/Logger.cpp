@@ -103,8 +103,8 @@ Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile& file, int l
 	: m_time(TimeStamp::now()),
 	  m_stream(),
 	  m_level(level),
-	  m_fileBaseName(file),
-	  m_line(line)
+	  m_line(line),
+	  m_fileBaseName(file)
 {
 	formatTime();
 	m_stream << LogLevelName[level] << ' ';

@@ -6,6 +6,8 @@
 #include <set>
 #include <vector>
 #include <condition_variable>
+#include <functional>
+#include <thread>
 
 template <typename T>
 class AtomicIntegerT
