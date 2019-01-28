@@ -16,7 +16,7 @@ void test()
 int main()
 {
 
-  Logger::setLogLevel(Logger::TRACE);
+  //Logger::setLogLevel(Logger::TRACE);
 
   TimerQueue* timer_queue = TimerQueue::GetInstance();
   timer_queue->Start();

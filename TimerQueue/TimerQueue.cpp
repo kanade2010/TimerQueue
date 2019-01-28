@@ -87,8 +87,9 @@ void Timer::restart(TimeStamp now)
 }
 
 TimerQueue::TimerQueue()
-  :m_timerfd(createTimerfd()),
-   m_callingExpiredTimers(false)
+  :m_started(false),
+  m_timerfd(createTimerfd()),
+  m_callingExpiredTimers(false)
 {
 
 }
@@ -112,7 +113,8 @@ TimerQueue::~TimerQueue()
 
 void TimerQueue::Start()
 {
-
+  assert(!m_started);
+  m_started = true;
   bool b_inited = false;;
 
   m_thread = std::thread([this, &b_inited]()mutable {
@@ -175,6 +177,7 @@ void TimerQueue::addTimerInLoop(Timer* timer)
 
 void TimerQueue::cancel(TimerId timerId)
 {
+  assert(m_started);
   p_loop->runInLoop(std::bind(&TimerQueue::cancelInLoop, this, timerId));
 }
 
@@ -286,17 +289,20 @@ void TimerQueue::reset(const std::vector<Entry>& expired, TimeStamp now)
 
 TimerId TimerQueue::runAt(const TimeStamp& time, const TimerCallBack_t& cb)
 {
+  assert(m_started);
   return addTimer(cb, time, 0.0);
 }
 
 TimerId TimerQueue::runAfter(double delay, const TimerCallBack_t& cb)
 {
+  assert(m_started);
   TimeStamp time(TimeStamp::addTime(TimeStamp::now(), delay));
   return runAt(time, cb);
 }
 
 TimerId TimerQueue::runEvery(double interval, const TimerCallBack_t& cb)
 {
+  assert(m_started);
   TimeStamp time(TimeStamp::addTime(TimeStamp::now(), interval));
   return addTimer(cb, time, interval);
 }

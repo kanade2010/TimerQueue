@@ -63,7 +63,6 @@ private:
 	bool m_looping;
 	bool m_quit;
 	std::thread::id m_threadId;
-	std::thread m_thread;
 	std::unique_ptr<Poller> m_poller;
 	ChannelList m_activeChannels;
 

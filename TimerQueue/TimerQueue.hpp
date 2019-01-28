@@ -169,6 +169,7 @@ private:
   void reset(const std::vector<Entry>& expired, TimeStamp now);
 
   std::thread m_thread;
+  bool m_started;
   const int m_timerfd;
   EventLoop* p_loop;
   Channel* p_timerfdChannel;
