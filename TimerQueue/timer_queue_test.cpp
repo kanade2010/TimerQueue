@@ -24,7 +24,11 @@ int main()
   timer_queue->runAfter(1.0, test);
   timer_queue->runAfter(3.0, test);
 
-  timer_queue->runEvery(5.0, test);
+  auto tid = timer_queue->runEvery(5.0, test);
+  getchar();
+  
+  timer_queue->cancel(tid);
+
   getchar();
   return 0;
 }
