@@ -192,6 +192,7 @@ void TimerQueue::cancelInLoop(TimerId timerId)
     size_t n = m_timers.erase(Entry(it->first->expiration(), it->first));
     assert(n == 1);
     delete it->first;
+    m_activeTimers.erase(it);
   }
   else if (m_callingExpiredTimers)
   {
